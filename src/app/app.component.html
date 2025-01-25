@@ -5,16 +5,49 @@
 
 <!-- Angular basics -->
 <!-- Conditional statement -->
+ <!-- if statement -->
 <!-- <p *ngIf="iSeeFood">Today is a great day</p> -->
  <!-- <p *ngIf="day == 'Monday'">Today is Monday</p> -->
- <p [ngSwitch]="day == 'Monday'">Today is Monday</p>
+
+ <!-- switch case -->
+ <!-- <p [ngSwitch]="day == 'Monday'">Today is Monday</p>
  <p *ngSwitchCase="day == 'Sunday'">Today is Tuesday</p>
- <p *ngSwitchCase="day == 'Thursday'">Today is Thusday</p>
- <p *ngSwitchDefault>Today is a day of the week</p>
+ <p *ngSwitchCase="day == 'Thursday'">Today is Thursday</p>
+ <p *ngSwitchDefault>Today is a day of the week</p> -->
 
 <!-- <div>
     <label for="">Username:</label>
     <input type="text" [(ngModel)]="username"> <br>
     <button onclick="myFunction()">Submit</button>
 </div> -->
+
+<div *ngIf="condition" else elseBlock>
+    <p>The condition is true</p>
 </div>
+<ng-template #elseBlock>
+    <p>This condition is not true</p>
+</ng-template>
+</div>
+
+<div [ngSwitch]="day">
+    <div *ngSwitchCase="day == 'Thursday'">Today is Thursday</div>
+    <div *ngSwitchCase="day == 'Monday'">Today is Monday</div>
+    <div *ngSwitchCase="day == 'Tuesday'">Today is Tuesday</div>
+    <div *ngSwitchDefault>pick one of the specified days</div>
+</div>
+
+<!-- ngfor - iteration/loops  ngclass-->
+ <div *ngFor="let product of products ; let id = index">
+    <div class="card col-3 my-2 px-2 py-1" [class]="product.available ? 'bg-dark text-light' : 'bg-secondary text-dark'">
+        {{id+1}}
+        <p class="fw-semibold">{{product.name}}</p>
+        <span>NGN{{product.price}}.00</span>
+
+        <button class="btn btn-danger w-50 my-2 text-light px-2" (click)="addToCart(product)">Add to cart</button>
+    </div>
+ </div>
+
+
+ <div [ngClass]="{'style1': condition1, 'style2': condition2}">
+    <p>hiiii</p>
+ </div>
