@@ -1,0 +1,37 @@
+<div class="card mx-auto col-6">
+    <h5 class="text-center lead">Register</h5>
+    <form [formGroup]="userForm" (submit)="register()">
+        
+    <div class="form-group mb-2">
+        <label for="name">Full Name</label>
+        <input type="text" class="form-control" formControlName="full_name">
+
+        <div *ngIf="userForm.get('full_name')?.invalid && userForm.get('full_name')?.touched">
+            <span class="text-danger text-sm" *ngIf="userForm.get('full_name')?.errors?.['required']"> Full name is required</span>
+            <span class="text-danger text-sm" *ngIf="userForm.get('full_name')?.errors?.['minlength']">Full name must not be less than 5 characters</span>
+
+        </div>
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="name">Email Address</label>
+        <input type="email" class="form-control" formControlName="email">
+    </div> 
+
+    <div class="form-group mb-2">
+        <label for="name">Phone Number</label>
+        <input type="tel" class="form-control" formControlName="phone_number">
+    </div>
+
+    <div class="form-group mb-2">
+        <label for="name">Password</label>
+        <input type="password" class="form-control" formControlName="password">
+    </div>
+
+    <div class="form-group mb-2">
+        <button class="btn btn-md bg-dark text-light px-2" type="submit" [disabled]="userForm.invalid">Register</button>
+    </div>
+    </form>
+</div>
+<!-- 2 way binding is been used
+ ngmodel -->
