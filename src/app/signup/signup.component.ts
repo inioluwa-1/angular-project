@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +17,8 @@ export class SignupComponent {
   private fb = inject(FormBuilder);
 
   constructor(
-    private _router: Router
+    private _router: Router,
+    private _auth: AuthService
   ) {}
   
   // constructor(
@@ -52,9 +54,19 @@ export class SignupComponent {
       console.log(this.userForm.get('full_name')?.errors);
     } else {
       const name = this.userForm.get('full_name')?.value?.replaceAll(' ','-');
+      console.log(this.userForm.value);
+      
+      this._auth.registerUsers(this.userForm.value).subscribe({
+        next: (res:any) => {
+          console.log(res);
+          this._router.navigate(['/user/profile', name]);
+        }, error: (err:any) => {
+          console.log(err);
+        }
+      })
       console.log(name);
       
-      this._router.navigate(['/user/profile', name]);
+      // this._router.navigate(['/user/profile', name]);
       
     }
 

@@ -1,0 +1,10 @@
+<div class="row d-md flex">
+    <div *ngFor=" let post of posts" class="row d-md flex mt-2">
+        <div class=" col-2 card mx-2 py-1 px-2">
+            <p class="fw-bold fs-6">{{post.title | titlecase}}</p>
+            <button mat-raised-dialog (click)="openDialog('3000ms', '1000ms', post.body)" class="bg-dark text-light p-2 ">
+                <p>{{post.body | truncate}}</p>
+                </button>
+        </div>
+    </div>
+</div>
